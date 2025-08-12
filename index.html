@@ -1,0 +1,174 @@
+<!-- Declaración del tipo de documento HTML5 -->
+<!DOCTYPE html>
+<!-- Inicio del documento HTML, idioma español -->
+<html lang="es">
+
+<head>
+    <!-- Codificación de caracteres en UTF-8 para soportar acentos y caracteres especiales -->
+    <meta charset="UTF-8">
+    <!-- Configuración de la vista para dispositivos móviles y escalado responsivo -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Título que aparece en la pestaña del navegador -->
+    <title>Café Artesanal</title>
+
+    <!-- Carga de Tailwind CSS desde CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Configuración personalizada de colores y fuentes para Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cream: '#F5F1E9',      // Color crema de fondo
+                        brown: '#6B4226',      // Marrón oscuro para cabeceras
+                        darkbrown: '#4B2E0B',  // Marrón más profundo
+                        gold: '#CBA135',       // Dorado para detalles
+                        lightgold: '#E2C275'   // Dorado claro en hover
+                    },
+                    fontFamily: {
+                        serif: ['Merriweather', 'serif'],   // Fuente serif personalizada
+                        sans: ['Open Sans', 'sans-serif']   // Fuente sans-serif personalizada
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Importación de las fuentes desde Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Open+Sans&display=swap" rel="stylesheet">
+</head>
+
+<!-- Cuerpo de la página con fondo crema, texto marrón y estructura flex vertical -->
+
+<body class="bg-cream text-darkbrown font-sans flex flex-col min-h-screen">
+
+    <!-- Encabezado con fondo marrón, texto crema y disposición flexible -->
+    <header class="bg-brown text-cream flex justify-between items-center px-6 py-4 sticky top-0 z-50 shadow-lg">
+        <!-- Logo y título -->
+        <div class="flex items-center space-x-3">
+            <!-- Ícono SVG de taza -->
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 text-gold" fill="none" stroke="currentColor"
+                stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M8 7v6a4 4 0 0 0 8 0V7"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4 10h16"></path>
+            </svg>
+            <!-- Nombre y eslogan -->
+            <div>
+                <h1 class="font-serif text-2xl font-bold select-none">Coffee</h1>
+                <p class="text-gold text-sm italic -mt-1 select-none">El sabor que despierta tus sentidos</p>
+            </div>
+        </div>
+
+        <!-- Navegación principal -->
+        <nav>
+            <!-- Menú en pantallas medianas y grandes -->
+            <ul class="hidden md:flex space-x-8 font-semibold">
+                <li><a href="#welcome" class="hover:text-gold transition">Inicio</a></li>
+                <li><a href="#catalog" class="hover:text-gold transition">Menu</a></li>
+                <li><a href="#about" class="hover:text-gold transition">Acerca de</a></li>
+                <li><a href="#contact" class="hover:text-gold transition">Contacto</a></li>
+            </ul>
+            <!-- Botón menú hamburguesa para móvil -->
+            <button id="menu-btn" aria-label="Abrir menú" aria-expanded="false"
+                class="md:hidden focus:outline-none focus:ring-2 focus:ring-gold">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" fill="none" stroke="currentColor"
+                    stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Menú móvil (oculto por defecto) -->
+    <div id="mobile-menu" class="hidden flex-col bg-brown text-cream p-6 space-y-4 md:hidden">
+        <a href="#welcome" class="hover:text-gold transition" onclick="toggleMenu()">Inicio</a>
+        <a href="#catalog" class="hover:text-gold transition" onclick="toggleMenu()">Menu</a>
+        <a href="#about" class="hover:text-gold transition" onclick="toggleMenu()">Acerca de</a>
+        <a href="#contact" class="hover:text-gold transition" onclick="toggleMenu()">Contacto</a>
+    </div>
+
+    <!-- Sección de bienvenida -->
+    <section id="welcome" class="flex flex-col md:flex-row items-center max-w-7xl mx-auto p-6 gap-8">
+        <!-- Imagen de bienvenida -->
+        <img src="cafe.png" alt="Taza de café artesanal" class="rounded-lg shadow-lg w-full md:w-1/2 object-cover"
+            loading="lazy">
+        <!-- Texto de bienvenida -->
+        <div class="md:w-1/2 text-brown space-y-4">
+            <h2 class="text-3xl font-serif font-bold">Bienvenido a Coffee</h2>
+            <p class="text-lg leading-relaxed">
+                Disfruta de nuestro café artesanal, cultivado con amor y cuidado, para ofrecerte un sabor auténtico que
+                despierta tus sentidos en cada taza.
+            </p>
+            <!-- Botón para ir al catálogo -->
+            <a href="#catalog"
+                class="inline-block bg-gold text-brown font-semibold px-6 py-3 rounded-lg shadow hover:bg-lightgold hover:scale-105 transition transform">Ver
+                Menu</a>
+        </div>
+    </section>
+
+    <!-- Sección de catálogo -->
+    <section id="catalog" class="max-w-7xl mx-auto px-6 py-12">
+        <h2 class="text-3xl font-serif font-bold text-center mb-10 text-brown">Nuestro Café</h2>
+
+        <!-- Grid de productos -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+
+            <!-- Tarjeta de producto 1 -->
+            <article tabindex="0"
+                class="bg-cream rounded-lg shadow-md p-4 hover:scale-105 transition transform cursor-pointer focus:outline-none focus:ring-4 focus:ring-gold">
+                <img src="cafee.png" alt="Taza de café espresso" class="rounded-md w-full h-40 object-cover mb-4"
+                    loading="lazy">
+                <h3 class="text-xl font-semibold mb-2 text-brown">Espresso Intenso</h3>
+                <p class="text-brown mb-4 text-sm">Café fuerte y aromático, ideal para empezar el día con energía.</p>
+                <p class="font-bold text-gold text-lg">$15.000 COP</p>
+            </article>
+
+            <!-- Tarjeta de producto 2 -->
+            <article tabindex="0"
+                class="bg-cream rounded-lg shadow-md p-4 hover:scale-105 transition transform cursor-pointer focus:outline-none focus:ring-4 focus:ring-gold">
+                <img src="cafe3.png" alt="Taza de café americano" class="rounded-md w-full h-40 object-cover mb-4"
+                    loading="lazy">
+                <h3 class="text-xl font-semibold mb-2 text-brown">Americano Suave</h3>
+                <p class="text-brown mb-4 text-sm">Un café equilibrado, perfecto para disfrutar a cualquier hora.</p>
+                <p class="font-bold text-gold text-lg">$13.000 COP</p>
+            </article>
+
+            <!-- Tarjeta de producto 3 -->
+            <article tabindex="0"
+                class="bg-cream rounded-lg shadow-md p-4 hover:scale-105 transition transform cursor-pointer focus:outline-none focus:ring-4 focus:ring-gold">
+                <img src="cafe4.png" alt="Taza de café capuchino" class="rounded-md w-full h-40 object-cover mb-4"
+                    loading="lazy">
+                <h3 class="text-xl font-semibold mb-2 text-brown">Capuchino Cremoso</h3>
+                <p class="text-brown mb-4 text-sm">La mezcla perfecta de espresso y leche cremosa con espuma ligera.</p>
+                <p class="font-bold text-gold text-lg">$18.000 COP</p>
+            </article>
+
+            <!-- Tarjeta de producto 4 -->
+            <article tabindex="0"
+                class="bg-cream rounded-lg shadow-md p-4 hover:scale-105 transition transform cursor-pointer focus:outline-none focus:ring-4 focus:ring-gold">
+                <img src="cafe.png" alt="Taza de café latte" class="rounded-md w-full h-40 object-cover mb-4"
+                    loading="lazy">
+                <h3 class="text-xl font-semibold mb-2 text-brown">Latte Suave</h3>
+                <p class="text-brown mb-4 text-sm">Un café con leche equilibrado para los paladares más delicados.</p>
+                <p class="font-bold text-gold text-lg">$17.000 COP</p>
+            </article>
+
+        </div>
+    </section>
+
+    <!-- Script para manejar el menú móvil -->
+    <script>
+        const menuBtn = document.getElementById('menu-btn'); // Botón hamburguesa
+        const mobileMenu = document.getElementById('mobile-menu'); // Contenedor del menú móvil
+        function toggleMenu() {
+            mobileMenu.classList.toggle('hidden'); // Muestra u oculta el menú
+            const expanded = menuBtn.getAttribute('aria-expanded') === 'true'; // Estado actual
+            menuBtn.setAttribute('aria-expanded', String(!expanded)); // Cambia el atributo ARIA
+        }
+        menuBtn.addEventListener('click', toggleMenu); // Evento click
+    </script>
+
+</body>
+
+</html>

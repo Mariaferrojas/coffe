@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Menú Responsive con Tailwind</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Para la animación de rotación suave al abrir el ícono hamburguesa */
+        .hamburger-active>span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .hamburger-active>span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger-active>span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+
+        span {
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+
+<body class="bg-gradient-to-r from-indigo-600 via-purple-700 to-pink-600 min-h-screen flex flex-col">
+
+    <!-- Navbar -->
+    <nav class="shadow-lg bg-gradient-to-r from-pink-500 to-purple-400 p-4 flex items-center justify-between relative">
+        <a href="#" class="text-white font-bold text-xl animate-pulse select-none">Tailwind</a>
+
+        <!-- Botón hamburguesa -->
+        <button id="btnHamburger" aria-label="Abrir menú"
+            class="flex flex-col gap-1.5 w-8 h-8 justify-center cursor-pointer z-50 md:hidden">
+            <span class="block h-1 bg-white rounded"></span>
+            <span class="block h-1 bg-white rounded"></span>
+            <span class="block h-1 bg-white rounded"></span>
+        </button>
+
+        <!-- Menú de navegación -->
+        <ul id="menu" class="hidden md:flex gap-8 text-white font-semibold uppercase tracking-wide">
+            <li><a href="#inicio" class="hover:underline hover:animate-bounce">Inicio</a></li>
+            <li><a href="#servicios" class="hover:underline hover:animate-bounce">Servicios</a></li>
+            <li><a href="#nosotros" class="hover:underline hover:animate-bounce">Nosotros</a></li>
+            <li><a href="#contacto" class="hover:underline hover:animate-bounce">Contacto</a></li>
+        </ul>
+
+        <!-- Menú móvil (overlay) -->
+        <div id="menuMobile"
+            class="fixed inset-0 bg-gradient-to-b from-pink-900/95 via-purple-800/90 to-pink-700/90 backdrop-blur-sm flex flex-col items-center justify-center gap-10 text-white text-2xl font-bold uppercase tracking-wide z-40 transform scale-0 transition-transform duration-300 md:hidden rounded-lg shadow-lg">
+            <a href="#inicio" class="hover:text-yellow-300 animate-pulse" onclick="toggleMenu()">Inicio</a>
+            <a href="#servicios" class="hover:text-yellow-300 animate-pulse" onclick="toggleMenu()">Servicios</a>
+            <a href="#nosotros" class="hover:text-yellow-300 animate-pulse" onclick="toggleMenu()">Nosotros</a>
+            <a href="#contacto" class="hover:text-yellow-300 animate-pulse" onclick="toggleMenu()">Contacto</a>
+        </div>
+    </nav>
+
+    <!-- Contenido de secciones con gradiente y sombra -->
+    <section id="inicio"
+        class="flex-grow bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-400 shadow-lg p-12 text-center rounded-lg m-6 animate-pulse">
+        <h1 class="text-5xl font-extrabold mb-4 text-white drop-shadow-lg">Bienvenido a Mi Sitio</h1>
+        <p class="text-white max-w-xl mx-auto text-lg">Este es un menú responsive único, con animaciones y gradientes
+            .</p>
+    </section>
+
+    <section id="servicios"
+        class="bg-gradient-to-r from-blue-300 via-red-300 to-purple-400 shadow-lg p-12 text-center rounded-lg m-6 animate-bounce">
+        <h2 class="text-4xl font-bold mb-4 text-white drop-shadow-md">Servicios</h2>
+        <p class="text-white max-w-xl mx-auto text-lg">Ofrecemos diseño web, desarrollo a medida y soporte técnico 24/7
+            para tus proyectos.</p>
+    </section>
+
+    <section id="nosotros"
+        class="bg-gradient-to-r from-green-300 via-teal-300 to-cyan-400 shadow-lg p-12 text-center rounded-lg m-6 animate-pulse">
+        <h2 class="text-4xl font-bold mb-4 text-white drop-shadow-md">Nosotros</h2>
+        <p class="text-white max-w-xl mx-auto text-lg">Somos un equipo apasionado que cree en el poder de la tecnología
+            para transformar vidas.</p>
+    </section>
+
+    <section id="contacto"
+        class="bg-gradient-to-r from-yellow-300 via-indigo-300 to-purple-400 shadow-lg p-12 text-center rounded-lg m-6 animate-bounce">
+        <h2 class="text-4xl font-bold mb-4 text-white drop-shadow-md">Contacto</h2>
+        <p class="text-white max-w-xl mx-auto text-lg">Contáctanos para recibir una asesoría personalizada y llevar tu
+            idea al siguiente nivel.</p>
+    </section>
+
+    <script>
+        const btnHamburger = document.getElementById('btnHamburger');
+        const menuMobile = document.getElementById('menuMobile');
+
+        btnHamburger.addEventListener('click', toggleMenu);
+
+        function toggleMenu() {
+            btnHamburger.classList.toggle('hamburger-active');
+            if (menuMobile.classList.contains('scale-0')) {
+                menuMobile.classList.remove('scale-0');
+                menuMobile.classList.add('scale-100');
+            } else {
+                menuMobile.classList.remove('scale-100');
+                menuMobile.classList.add('scale-0');
+            }
+        }
+    </script>
+</body>
+
+</html>
